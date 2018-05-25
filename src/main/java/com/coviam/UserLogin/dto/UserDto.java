@@ -10,6 +10,7 @@ public class UserDto implements Serializable {
     private String password;
     private String name;
     private String address;
+    private String email;
 
     public String getAddress() {
         return address;
@@ -20,6 +21,14 @@ public class UserDto implements Serializable {
     }
 
     public UserDto() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserName() {
@@ -46,11 +55,12 @@ public class UserDto implements Serializable {
         this.name = name;
     }
 
-    public UserDto(String userName, String password, String name, String address) {
+    public UserDto(String userName, String password, String name, String address, String email) {
         this.userName = userName;
         this.password = password;
         this.name = name;
         this.address = address;
+        this.email = email;
 
     }
 

@@ -19,6 +19,9 @@ public class UserModel {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "email")
+    private String email;
+
     public String getUserName() {
         return userName;
     }
@@ -51,11 +54,20 @@ public class UserModel {
         this.address = address;
     }
 
-    public UserModel(String userName, String password, String name, String address) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public UserModel(String userName, String password, String name, String address, String email) {
         this.userName = userName;
         this.password = password;
         this.name = name;
         this.address = address;
+        this.email = email;
     }
 
     public UserModel() {
