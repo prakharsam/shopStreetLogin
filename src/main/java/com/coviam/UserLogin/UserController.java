@@ -1,5 +1,7 @@
 package com.coviam.UserLogin;
 
+import com.coviam.UserLogin.dto.ResponseDto;
+import com.coviam.UserLogin.dto.ReturnDto;
 import com.coviam.UserLogin.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -7,24 +9,31 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
-
 public class UserController {
 
     @Autowired
-   private UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "/authorize",method = RequestMethod.GET)
-    public boolean authorizeUser(@RequestParam String userName,@RequestParam String password){
+    public ResponseDto authorizeUser(@RequestParam String userName, @RequestParam String password){
 
-        Boolean e = userService.authorizeUser(userName,password);
-        return(e);
+        ResponseDto responseDto = userService.authorizeUser(userName,password);
+        return(responseDto);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public UserDto addEmployee(@RequestBody UserDto userDto){
+    public ResponseDto addUser(@RequestBody UserDto userDto){
 
-        UserDto userDtoReturn = userService.createUser(userDto);
-        return userDtoReturn;
+        ResponseDto responseDto = userService.createUser(userDto);
+        return responseDto;
     }
+
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public ReturnDto getUser(@RequestParam long userId){
+
+        ReturnDto returnDto = userService.getUser(userId);
+        return returnDto;
+    }
+
 
 }

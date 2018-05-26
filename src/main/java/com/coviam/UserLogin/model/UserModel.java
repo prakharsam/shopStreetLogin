@@ -6,10 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "project")
+@Table(name = "usertable")
 public class UserModel {
 
     @Id
+    @Column(name = "userId")
+    private long userId;
     @Column(name = "userName")
     private String userName;
     @Column(name = "password")
@@ -18,9 +20,28 @@ public class UserModel {
     private String name;
     @Column(name = "address")
     private String address;
-
     @Column(name = "email")
     private String email;
+
+    public UserModel(long userId, String userName, String password, String name, String address, String email) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+    }
+
+    public UserModel() {
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;
@@ -61,16 +82,4 @@ public class UserModel {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public UserModel(String userName, String password, String name, String address, String email) {
-        this.userName = userName;
-        this.password = password;
-        this.name = name;
-        this.address = address;
-        this.email = email;
-    }
-
-    public UserModel() {
-    }
-
 }

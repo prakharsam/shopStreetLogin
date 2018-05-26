@@ -1,26 +1,30 @@
 package com.coviam.UserLogin.dto;
 
-import java.io.Serializable;
-import java.util.Date;
+public class ReturnDto {
 
-
-public class UserDto implements Serializable {
-
+    private long userId;
     private String userName;
-    private String password;
     private String name;
     private String address;
     private String email;
 
-    public UserDto(String userName, String password, String name, String address, String email) {
+    public ReturnDto(long userId, String userName, String name, String address, String email) {
+        this.userId = userId;
         this.userName = userName;
-        this.password = password;
         this.name = name;
         this.address = address;
         this.email = email;
     }
 
-    public UserDto() {
+    public ReturnDto() {
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -29,14 +33,6 @@ public class UserDto implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
