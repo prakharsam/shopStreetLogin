@@ -8,7 +8,7 @@ public class UserModel {
 
     @Id
     @Column(name = "userId")
-    @SequenceGenerator(name = "name_of_the_sequence", allocationSize = 1,sequenceName = "name_of_the_sequence")
+    @SequenceGenerator(name = "name_of_the_sequence", allocationSize = 1, sequenceName = "name_of_the_sequence")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name_of_the_sequence")
     private long userId;
     @Column(name = "userName")

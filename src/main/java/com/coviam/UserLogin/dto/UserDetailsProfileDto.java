@@ -7,16 +7,26 @@ public class UserDetailsProfileDto {
     private String name;
     private String address;
     private String email;
+    private boolean response;
 
-    public UserDetailsProfileDto(long userId, String userName, String name, String address, String email) {
+    public UserDetailsProfileDto(long userId, String userName, String name, String address, String email, boolean response) {
         this.userId = userId;
         this.userName = userName;
         this.name = name;
         this.address = address;
         this.email = email;
+        this.response = response;
     }
 
     public UserDetailsProfileDto() {
+    }
+
+    public boolean isResponse() {
+        return response;
+    }
+
+    public void setResponse(boolean response) {
+        this.response = response;
     }
 
     public long getUserId() {

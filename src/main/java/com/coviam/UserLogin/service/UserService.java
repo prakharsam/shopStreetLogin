@@ -12,4 +12,4 @@ public interface UserService {
 
     UserDetailsProfileDto getUser(long userId);
 
-    }
+}

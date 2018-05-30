@@ -15,22 +15,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/authorize",method = RequestMethod.GET)
-    public UserAuthorizationResponseDto authorizeUser(@RequestParam String userName, @RequestParam String password){
+    @RequestMapping(value = "/authorize", method = RequestMethod.GET)
+    public UserAuthorizationResponseDto authorizeUser(@RequestParam String userName, @RequestParam String password) {
 
-        UserAuthorizationResponseDto userAuthorizationResponseDto = userService.authorizeUser(userName,password);
-        return(userAuthorizationResponseDto);
+        UserAuthorizationResponseDto userAuthorizationResponseDto = userService.authorizeUser(userName, password);
+        return (userAuthorizationResponseDto);
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public UserAuthorizationResponseDto addUser(@RequestBody SignUpUserDto signUpUserDto){
+    public UserAuthorizationResponseDto addUser(@RequestBody SignUpUserDto signUpUserDto) {
 
         UserAuthorizationResponseDto userAuthorizationResponseDto = userService.createUser(signUpUserDto);
         return userAuthorizationResponseDto;
     }
 
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
-    public UserDetailsProfileDto getUser(@RequestParam long userId){
+    public UserDetailsProfileDto getUser(@RequestParam long userId) {
 
         UserDetailsProfileDto userDetailsProfileDto = userService.getUser(userId);
         return userDetailsProfileDto;
