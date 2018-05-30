@@ -1,5 +1,6 @@
-package com.coviam.UserLogin;
+package com.coviam.UserLogin.service;
 
+import com.coviam.UserLogin.repository.UserRepository;
 import com.coviam.UserLogin.dto.ResponseDto;
 import com.coviam.UserLogin.dto.ReturnDto;
 import com.coviam.UserLogin.dto.UserDto;
@@ -9,10 +10,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class  UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
         ResponseDto responseDto = new ResponseDto();
         UserModel userModel = new UserModel();
-        if (userRepository.existsByUserName(userDto.getUserName())) {
+        if (userRepository.existsByUserName(userDto.getUserName())||userRepository.existsByEmail(userDto.getEmail())) {
             userModel = userRepository.findByUserName(userDto.getUserName());
             responseDto.setResponse(false);
             responseDto.setEmail(userModel.getEmail());
@@ -57,8 +57,6 @@ public class UserServiceImpl implements UserService {
             return responseDto;
         }
 
-        UUID uuid = UUID.randomUUID();
-        userModel.setUserId(uuid.getMostSignificantBits());
         BeanUtils.copyProperties(userDto, userModel);
 
         userModel.setPassword(hashPassword(userModel.getPassword()));

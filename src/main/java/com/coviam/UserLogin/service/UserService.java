@@ -1,4 +1,4 @@
-package com.coviam.UserLogin;
+package com.coviam.UserLogin.service;
 
 import com.coviam.UserLogin.dto.ResponseDto;
 import com.coviam.UserLogin.dto.ReturnDto;

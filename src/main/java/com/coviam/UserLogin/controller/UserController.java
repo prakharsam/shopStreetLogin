@@ -1,5 +1,6 @@
-package com.coviam.UserLogin;
+package com.coviam.UserLogin.controller;
 
+import com.coviam.UserLogin.service.UserService;
 import com.coviam.UserLogin.dto.ResponseDto;
 import com.coviam.UserLogin.dto.ReturnDto;
 import com.coviam.UserLogin.dto.UserDto;
@@ -21,19 +22,18 @@ public class UserController {
         return(responseDto);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseDto addUser(@RequestBody UserDto userDto){
 
         ResponseDto responseDto = userService.createUser(userDto);
         return responseDto;
     }
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public ReturnDto getUser(@RequestParam long userId){
 
         ReturnDto returnDto = userService.getUser(userId);
         return returnDto;
     }
-
 
 }
