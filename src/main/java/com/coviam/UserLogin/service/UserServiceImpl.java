@@ -1,9 +1,9 @@
 package com.coviam.UserLogin.service;
 
 import com.coviam.UserLogin.repository.UserRepository;
-import com.coviam.UserLogin.dto.ResponseDto;
-import com.coviam.UserLogin.dto.ReturnDto;
-import com.coviam.UserLogin.dto.UserDto;
+import com.coviam.UserLogin.dto.UserAuthorizationResponseDto;
+import com.coviam.UserLogin.dto.UserDetailsProfileDto;
+import com.coviam.UserLogin.dto.SignUpUserDto;
 import com.coviam.UserLogin.model.UserModel;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
@@ -17,65 +17,65 @@ public class  UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public ResponseDto authorizeUser(String userName, String password){
+    public UserAuthorizationResponseDto authorizeUser(String userName, String password){
 
-        ResponseDto responseDto = new ResponseDto();
+        UserAuthorizationResponseDto userAuthorizationResponseDto = new UserAuthorizationResponseDto();
 
         if (!userRepository.existsByUserName(userName)) {
-            responseDto.setResponse(false);
-            responseDto.setEmail("");
-            responseDto.setUserId(0);
-            return responseDto;
+            userAuthorizationResponseDto.setResponse(false);
+            userAuthorizationResponseDto.setEmail("");
+            userAuthorizationResponseDto.setUserId(0);
+            return userAuthorizationResponseDto;
         }
 
         UserModel userModel = new UserModel();
 
         BeanUtils.copyProperties(userRepository.findByUserName(userName), userModel);
         boolean check = checkPass(password,userModel.getPassword());
-        responseDto.setResponse(check);
+        userAuthorizationResponseDto.setResponse(check);
         if(!check) {
-            responseDto.setEmail("");
-            responseDto.setUserId(0);
-            return responseDto;
+            userAuthorizationResponseDto.setEmail("");
+            userAuthorizationResponseDto.setUserId(0);
+            return userAuthorizationResponseDto;
 
         }
-        responseDto.setEmail(userModel.getEmail());
-        responseDto.setUserId(userModel.getUserId());
-        return responseDto;
+        userAuthorizationResponseDto.setEmail(userModel.getEmail());
+        userAuthorizationResponseDto.setUserId(userModel.getUserId());
+        return userAuthorizationResponseDto;
 
     }
 
-    public ResponseDto createUser(UserDto userDto) {
+    public UserAuthorizationResponseDto createUser(SignUpUserDto signUpUserDto) {
 
-        ResponseDto responseDto = new ResponseDto();
+        UserAuthorizationResponseDto userAuthorizationResponseDto = new UserAuthorizationResponseDto();
         UserModel userModel = new UserModel();
-        if (userRepository.existsByUserName(userDto.getUserName())||userRepository.existsByEmail(userDto.getEmail())) {
-            userModel = userRepository.findByUserName(userDto.getUserName());
-            responseDto.setResponse(false);
-            responseDto.setEmail(userModel.getEmail());
-            responseDto.setUserId(userModel.getUserId());
-            return responseDto;
+        if (userRepository.existsByUserName(signUpUserDto.getUserName())||userRepository.existsByEmail(signUpUserDto.getEmail())) {
+            userModel = userRepository.findByUserName(signUpUserDto.getUserName());
+            userAuthorizationResponseDto.setResponse(false);
+            userAuthorizationResponseDto.setEmail(userModel.getEmail());
+            userAuthorizationResponseDto.setUserId(userModel.getUserId());
+            return userAuthorizationResponseDto;
         }
 
-        BeanUtils.copyProperties(userDto, userModel);
+        BeanUtils.copyProperties(signUpUserDto, userModel);
 
         userModel.setPassword(hashPassword(userModel.getPassword()));
         userRepository.save(userModel);
-        BeanUtils.copyProperties(userModel,responseDto);
-        responseDto.setResponse(true);
+        BeanUtils.copyProperties(userModel, userAuthorizationResponseDto);
+        userAuthorizationResponseDto.setResponse(true);
 
-        return responseDto;
+        return userAuthorizationResponseDto;
     }
 
     @Override
-    public ReturnDto getUser(long userId) {
+    public UserDetailsProfileDto getUser(long userId) {
 
         UserModel   userModel = userRepository.findById(userId).get();
-        ReturnDto returnDto = new ReturnDto();
+        UserDetailsProfileDto userDetailsProfileDto = new UserDetailsProfileDto();
 
-        BeanUtils.copyProperties(userModel,returnDto);
+        BeanUtils.copyProperties(userModel, userDetailsProfileDto);
 
-        return returnDto;
+        return userDetailsProfileDto;
     }
 
     private String hashPassword(String plainTextPassword){

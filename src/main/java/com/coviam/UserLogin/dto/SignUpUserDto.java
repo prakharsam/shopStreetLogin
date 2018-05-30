@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-public class UserDto implements Serializable {
+public class SignUpUserDto implements Serializable {
 
     private String userName;
     private String password;
@@ -12,7 +12,7 @@ public class UserDto implements Serializable {
     private String address;
     private String email;
 
-    public UserDto(String userName, String password, String name, String address, String email) {
+    public SignUpUserDto(String userName, String password, String name, String address, String email) {
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -20,7 +20,7 @@ public class UserDto implements Serializable {
         this.email = email;
     }
 
-    public UserDto() {
+    public SignUpUserDto() {
     }
 
     public String getUserName() {

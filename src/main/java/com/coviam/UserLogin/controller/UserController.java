@@ -1,9 +1,9 @@
 package com.coviam.UserLogin.controller;
 
 import com.coviam.UserLogin.service.UserService;
-import com.coviam.UserLogin.dto.ResponseDto;
-import com.coviam.UserLogin.dto.ReturnDto;
-import com.coviam.UserLogin.dto.UserDto;
+import com.coviam.UserLogin.dto.UserAuthorizationResponseDto;
+import com.coviam.UserLogin.dto.UserDetailsProfileDto;
+import com.coviam.UserLogin.dto.SignUpUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +16,24 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/authorize",method = RequestMethod.GET)
-    public ResponseDto authorizeUser(@RequestParam String userName, @RequestParam String password){
+    public UserAuthorizationResponseDto authorizeUser(@RequestParam String userName, @RequestParam String password){
 
-        ResponseDto responseDto = userService.authorizeUser(userName,password);
-        return(responseDto);
+        UserAuthorizationResponseDto userAuthorizationResponseDto = userService.authorizeUser(userName,password);
+        return(userAuthorizationResponseDto);
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseDto addUser(@RequestBody UserDto userDto){
+    public UserAuthorizationResponseDto addUser(@RequestBody SignUpUserDto signUpUserDto){
 
-        ResponseDto responseDto = userService.createUser(userDto);
-        return responseDto;
+        UserAuthorizationResponseDto userAuthorizationResponseDto = userService.createUser(signUpUserDto);
+        return userAuthorizationResponseDto;
     }
 
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
-    public ReturnDto getUser(@RequestParam long userId){
+    public UserDetailsProfileDto getUser(@RequestParam long userId){
 
-        ReturnDto returnDto = userService.getUser(userId);
-        return returnDto;
+        UserDetailsProfileDto userDetailsProfileDto = userService.getUser(userId);
+        return userDetailsProfileDto;
     }
 
 }

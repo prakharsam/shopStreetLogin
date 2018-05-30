@@ -1,6 +1,6 @@
 package com.coviam.UserLogin.dto;
 
-public class ReturnDto {
+public class UserDetailsProfileDto {
 
     private long userId;
     private String userName;
@@ -8,7 +8,7 @@ public class ReturnDto {
     private String address;
     private String email;
 
-    public ReturnDto(long userId, String userName, String name, String address, String email) {
+    public UserDetailsProfileDto(long userId, String userName, String name, String address, String email) {
         this.userId = userId;
         this.userName = userName;
         this.name = name;
@@ -16,7 +16,7 @@ public class ReturnDto {
         this.email = email;
     }
 
-    public ReturnDto() {
+    public UserDetailsProfileDto() {
     }
 
     public long getUserId() {

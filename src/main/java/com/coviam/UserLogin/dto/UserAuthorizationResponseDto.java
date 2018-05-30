@@ -1,6 +1,6 @@
 package com.coviam.UserLogin.dto;
 
-public class ResponseDto {
+public class UserAuthorizationResponseDto {
 
     private boolean response;
     private long userId;

@@ -1,15 +1,15 @@
 package com.coviam.UserLogin.service;
 
-import com.coviam.UserLogin.dto.ResponseDto;
-import com.coviam.UserLogin.dto.ReturnDto;
-import com.coviam.UserLogin.dto.UserDto;
+import com.coviam.UserLogin.dto.UserAuthorizationResponseDto;
+import com.coviam.UserLogin.dto.UserDetailsProfileDto;
+import com.coviam.UserLogin.dto.SignUpUserDto;
 
 public interface UserService {
 
-    ResponseDto authorizeUser(String userName, String password);
+    UserAuthorizationResponseDto authorizeUser(String userName, String password);
 
-    ResponseDto createUser(UserDto userDto);
+    UserAuthorizationResponseDto createUser(SignUpUserDto signUpUserDto);
 
-    ReturnDto getUser(long userId);
+    UserDetailsProfileDto getUser(long userId);
 
     }
