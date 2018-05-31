@@ -1,9 +1,9 @@
 package com.coviam.UserLogin.controller;
 
-import com.coviam.UserLogin.service.UserService;
+import com.coviam.UserLogin.dto.SignUpUserDto;
 import com.coviam.UserLogin.dto.UserAuthorizationResponseDto;
 import com.coviam.UserLogin.dto.UserDetailsProfileDto;
-import com.coviam.UserLogin.dto.SignUpUserDto;
+import com.coviam.UserLogin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

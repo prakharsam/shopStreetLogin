@@ -64,16 +64,16 @@ public class UserServiceImpl implements UserService {
 
         UserModel userModelCheck = userRepository.save(userModel);
 
-        if(userModelCheck.equals(null)){
+        if (userModelCheck.equals(null)) {
             userAuthorizationResponseDto.setResponse(false);
             userAuthorizationResponseDto.setEmail("");
             userAuthorizationResponseDto.setUserId(0);
             return userAuthorizationResponseDto;
         }
-            BeanUtils.copyProperties(userModel, userAuthorizationResponseDto);
-            userAuthorizationResponseDto.setResponse(true);
+        BeanUtils.copyProperties(userModel, userAuthorizationResponseDto);
+        userAuthorizationResponseDto.setResponse(true);
 
-            return userAuthorizationResponseDto;
+        return userAuthorizationResponseDto;
 
     }
 
@@ -84,9 +84,9 @@ public class UserServiceImpl implements UserService {
         UserDetailsProfileDto userDetailsProfileDto = new UserDetailsProfileDto();
 
         UserModel userModel = userRepository.findById(userId).get();
-        if(userModel.equals(null)){
+        if (userModel.equals(null)) {
             userDetailsProfileDto.setResponse(false);
-            return  userDetailsProfileDto;
+            return userDetailsProfileDto;
         }
         BeanUtils.copyProperties(userModel, userDetailsProfileDto);
 

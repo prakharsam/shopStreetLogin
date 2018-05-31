@@ -21,6 +21,17 @@ public class UserModel {
     private String address;
     @Column(name = "email")
     private String email;
+//    @Column(name = "enabled")
+//    private boolean enabled;
+//
+//    public UserModel() {
+//        super();
+//        this.enabled=false;
+//    }
+
+
+    public UserModel() {
+    }
 
     public UserModel(long userId, String userName, String password, String name, String address, String email) {
         this.userId = userId;
@@ -29,9 +40,6 @@ public class UserModel {
         this.name = name;
         this.address = address;
         this.email = email;
-    }
-
-    public UserModel() {
     }
 
     public long getUserId() {
