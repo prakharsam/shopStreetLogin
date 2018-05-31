@@ -1,10 +1,10 @@
 package com.coviam.UserLogin.service.serviceImpl;
 
-import com.coviam.UserLogin.repository.UserRepository;
+import com.coviam.UserLogin.dto.SignUpUserDto;
 import com.coviam.UserLogin.dto.UserAuthorizationResponseDto;
 import com.coviam.UserLogin.dto.UserDetailsProfileDto;
-import com.coviam.UserLogin.dto.SignUpUserDto;
 import com.coviam.UserLogin.model.UserModel;
+import com.coviam.UserLogin.repository.UserRepository;
 import com.coviam.UserLogin.service.UserService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;

@@ -1,8 +1,8 @@
 package com.coviam.UserLogin.service;
 
+import com.coviam.UserLogin.dto.SignUpUserDto;
 import com.coviam.UserLogin.dto.UserAuthorizationResponseDto;
 import com.coviam.UserLogin.dto.UserDetailsProfileDto;
-import com.coviam.UserLogin.dto.SignUpUserDto;
 
 public interface UserService {
 
